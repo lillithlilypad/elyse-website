@@ -188,28 +188,28 @@ body::after {
   color: var(--cream);
 }
 .tab-featured::after {
-  background-image: url("/assets/crease-edge-1.png");
+  background-image: url("assets/crease-edge-1.png");
 }
 .tab-work {
   background: var(--gold);
   color: var(--ink);
 }
 .tab-work::after {
-  background-image: url("/assets/crease-edge-2.png");
+  background-image: url("assets/crease-edge-2.png");
 }
 .tab-about {
   background: var(--avocado);
   color: var(--cream);
 }
 .tab-about::after {
-  background-image: url("/assets/crease-edge-3.png");
+  background-image: url("assets/crease-edge-3.png");
 }
 .tab-book {
   background: var(--coral);
   color: var(--cream);
 }
 .tab-book::after {
-  background-image: url("/assets/crease-edge-4.png");
+  background-image: url("assets/crease-edge-4.png");
 }
 /* ── SECTIONS ── */
 section {
