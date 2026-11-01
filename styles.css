@@ -1075,6 +1075,7 @@ footer {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: var(--grid-gap);
+  align-items: start; /* new: year tabs only as tall as their text */
   padding: 1rem 1.25rem 2rem;
 
   box-shadow:
@@ -1163,7 +1164,8 @@ footer {
 }
 
 .video-tile:hover .video-play {
-  background: var(--grid-accent, #d8543f);
+  /* background: var(--grid-accent, #d8543f); */
+  background: var(--grid-accent, var(--coral));
 }
 
 .video-media iframe {
@@ -1235,5 +1237,6 @@ footer {
 }
 
 .video-modal-close:hover {
-  color: var(--coral);
+  /* color: var(--coral); */
+  color: var(--gold);
 }
