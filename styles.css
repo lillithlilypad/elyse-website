@@ -1,22 +1,33 @@
-/* ── TOKENS ── */
+/* ── ROOT STYLES THAT CAN BE CHANGED ── */
+
 :root {
-  --cream: #f5f0e8;
-  --parchment: #ede8de;
+  /* --cream: #f5f0e8; */
+  --cream: #f7f1e3;
+  /* --parchment: #ede8de; */
+  --parchment: #efe6d2;
   --rule: #c8bfad;
   --ink: #2c2820;
   --ink-light: #5f5e5a;
-  --muted: #9a9488;
-  --seafoam: #7ab8b0;
-  --coral: #e07558;
-  --gold: #c8975a;
-  --avocado: #8a9a5a;
+  /* --muted: #9a9488; */
+  --muted: #6b665c;
+  /* --seafoam: #7ab8b0; */
+  --seafoam: #2a726e;
+  /* --coral: #e07558; */
+  --coral: #ae432c;
+  /* --gold: #c8975a; */
+  --gold: #d99a2b;
+  /* --avocado: #8a9a5a; */
+  --avocado: #2f6b55;
+  /* new: darker versions of the fills above, for tiny text on the paper */
+  --gold-text: #8a5f1f;
+  --seafoam-text: #2f6f68;
+  --footer-text: #a8a294;
   --tab-w: 36px;
   --font-hand: "Neucha", cursive;
   --font-body: "Lora", serif;
   --font-type: "Courier Prime", monospace;
   --font-display: "Reenie Beanie", cursive;
 }
-
 /* ── RESET ── */
 *,
 *::before,
@@ -174,14 +185,14 @@ body::after {
 
 .tab-featured {
   background: var(--seafoam);
-  color: var(--ink);
+  color: var(--cream);
 }
 .tab-featured::after {
   background-image: url("/assets/crease-edge-1.png");
 }
 .tab-work {
   background: var(--gold);
-  color: var(--cream);
+  color: var(--ink);
 }
 .tab-work::after {
   background-image: url("/assets/crease-edge-2.png");
@@ -214,7 +225,7 @@ section:last-of-type {
   font-size: 8px;
   letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: var(--gold);
+  color: var(--gold-text);
   margin-bottom: 6px;
 }
 
@@ -292,17 +303,17 @@ section:last-of-type {
   position: relative;
 }
 .sec-h--featured {
-  background-color: rgba(122, 184, 176, 0.45);
-} /* seafoam */
+  background-color: color-mix(in srgb, var(--seafoam) 45%, transparent);
+}
 .sec-h--work {
-  background-color: rgba(200, 151, 90, 0.45);
-} /* gold */
+  background-color: color-mix(in srgb, var(--gold) 45%, transparent);
+}
 .sec-h--about {
-  background-color: rgba(138, 154, 90, 0.45);
-} /* avocado */
+  background-color: color-mix(in srgb, var(--avocado) 45%, transparent);
+}
 .sec-h--book {
-  background-color: rgba(224, 117, 88, 0.45);
-} /* coral */
+  background-color: color-mix(in srgb, var(--coral) 45%, transparent);
+}
 
 /* ── HERO ── */
 #hero {
@@ -337,7 +348,7 @@ section:last-of-type {
   padding: 10px 22px;
   font-family: var(--font-hand);
   font-size: 20px;
-  color: var(--ink);
+  color: var(--cream);
   text-decoration: none;
   transition:
     background 0.2s,
@@ -362,7 +373,7 @@ section:last-of-type {
   font-size: 7px;
   letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: var(--gold);
+  color: var(--gold-text);
   display: block;
   margin-bottom: 3px;
 }
@@ -609,7 +620,7 @@ section:last-of-type {
 
 .arch-num {
   font-size: 8px;
-  color: var(--gold);
+  color: var(--gold-text);
   flex-shrink: 0;
   width: 18px;
 }
@@ -721,7 +732,7 @@ section:last-of-type {
   font-size: 7px;
   letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: var(--seafoam);
+  color: var(--seafoam-text);
   margin-bottom: 12px;
   display: block;
 }
@@ -839,7 +850,7 @@ section:last-of-type {
 .inq-item.active {
   background: var(--seafoam);
   border-color: var(--seafoam);
-  color: var(--ink);
+  color: var(--cream);
 }
 
 /* ── FOOTER ── */
@@ -859,11 +870,11 @@ footer {
 .footer-links {
   font-size: 9px;
   letter-spacing: 0.1em;
-  color: #7a7468;
+  color: var(--footer-text);
 }
 .footer-copy {
   font-size: 9px;
-  color: #7a7468;
+  color: var(--footer-text);
 }
 
 /* ── MOBILE ── */
@@ -953,15 +964,19 @@ footer {
 
   .mobile-link.tab-featured {
     border-left: 3px solid var(--seafoam);
+    color: var(--cream);
   }
   .mobile-link.tab-work {
     border-left: 3px solid var(--gold);
+    color: var(--ink);
   }
   .mobile-link.tab-about {
     border-left: 3px solid var(--avocado);
+    color: var(--cream);
   }
   .mobile-link.tab-book {
     border-left: 3px solid var(--coral);
+    color: var(--cream);
   }
 
   /* layout */
