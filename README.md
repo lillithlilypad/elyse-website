@@ -4,7 +4,7 @@ Everything in the **Work** section (the projects, videos and songs) comes from o
 
 **`data/projects.json`**
 
-You don't need to touch any HTML to update projects. The JSON file lists every project in order, and the site lays it out for you. The rest of the page (the top, About, Book and the footer) is written directly in `index.html`, which section 9 covers.
+You don't need to touch any HTML to update projects. Think of that file as a setlist: it lists every project in order, and the site lays it out for you. The rest of the page (the top, About, Book and the footer) is written directly in `index.html`, which section 9 covers. The colors are in the stylesheet, which section 10 covers.
 
 ---
 
@@ -92,7 +92,7 @@ This is a reading guide only. The `<-` notes are not allowed in the real file.
 |---|---|---|
 | `text` | `text` | A short blurb about the project |
 | `videoGrid` | `items` | A grid of video and song thumbnails. Click one to play it |
-| `featured` | `embedSrc`, `linkUrl`, `linkText`, `title`, `description` | The big highlighted release with a player and a caption beside it |
+| `featured` | `embedSrc`, `linkUrl`, `linkText`, `title`, `description`, and optionally `width`, `height` | The big highlighted release with a player and a caption beside it. `title` and `description` show beside the player. `linkUrl` and `linkText` are a plain link that shows if the player can't load |
 
 ### An item inside a videoGrid (the `type` says where it plays from)
 
@@ -165,11 +165,17 @@ Find the project's block with `"kind": "featured"` and change its values:
 }
 ```
 
-At the moment only Bandcamp embeds work in this spot. For anything else, ask Morgan.
+Fill in all five of `embedSrc`, `linkUrl`, `linkText`, `title` and `description`. If one is missing, the page can show the word "undefined" in its place.
+
+This spot was built for Bandcamp players, which are 350 pixels wide and 470 tall. If you ever need a different size, two optional extras are available: `"width"` and `"height"`, written as plain numbers (no quote marks around the number), in pixels.
+
+Another kind of player, such as a YouTube embed, may load here, but it won't be the right shape unless you set the size. A wide one can also run off the edge of a phone screen. If you want to feature anything other than Bandcamp, ask Morgan to check it first.
 
 ### Change a project's blurb
 
 Edit the words inside the quote marks after `"text":`. Keep the quote marks.
+
+Blurbs, captions, titles and descriptions are plain text. A link, bold text or any other HTML typed into them will show up as typed characters, not as a link or bold. You can type `&` and apostrophes normally.
 
 ### Add a whole new project
 
@@ -209,6 +215,7 @@ This file is picky. Any one of these can make the whole Work section fail to loa
 | A quote mark **inside** your text, like `He said "hello"` | Put a backslash before it: `He said \"hello\"`. Or use an apostrophe instead |
 | A line break in the middle of a caption or blurb | Keep each value on a single line |
 | A missing closing `}` or `]` | Every `{` and `[` needs its partner |
+| A project with no `"blocks"`, or a `videoGrid` with no `"items"` | Every project needs `blocks`, and every `videoGrid` needs `items` (even if there's just one). If one is missing, the **whole** Work section fails to load, not just that project |
 | A quote mark missing around a label or value | Both the label and the text value need quote marks |
 
 Before you commit, you can paste the whole file into **jsonlint.com**. It points to the exact line that is wrong.
@@ -262,10 +269,57 @@ To change the words, open `index.html` on GitHub, click the pencil, and use **Cm
 
 ---
 
-## 10. Getting help from an AI assistant
+## 10. Changing the colors
+
+Every color on the site is set once, in a block called `:root` at the very top of the stylesheet (the `.css` file). Change a color there and it changes everywhere.
+
+### To change one
+
+1. On GitHub, open the stylesheet and click the **pencil icon**.
+2. Press **Cmd / Ctrl + F** and search for `:root`.
+3. Change the six characters after the `#` on the line you want, for example `--gold: #d99a2b;`. Keep the semicolon.
+4. Commit the same way as in section 1, then hard refresh.
+
+### What each one is
+
+| Name | What it's for |
+|---|---|
+| `--parchment` | The paper behind the page |
+| `--cream` | Light panels, and the text on dark or colored areas |
+| `--ink` | Main text |
+| `--ink-light` | Secondary text |
+| `--muted` | Small, quiet text |
+| `--rule` | Thin lines |
+| `--seafoam`, `--gold`, `--avocado`, `--coral` | The colored tabs, buttons and accents |
+| `--gold-text`, `--seafoam-text` | Gold and seafoam used as **text**. They are darker versions so they stay readable on the paper |
+| `--footer-text` | Text in the dark footer |
+
+### Try a color before you commit
+
+You can test a color in your browser without changing anything:
+
+1. Open your site, right-click the page and choose **Inspect**.
+2. Click the `<html>` line at the top of the code.
+3. In the **Styles** panel, find `:root` and click any color to change it.
+
+The change disappears when you refresh, so nothing is saved until you edit the file on GitHub.
+
+### Keep the words readable
+
+- The words on each colored tab are set separately from the tab color. If you make a tab much **lighter**, its words get hard to read. A darker color is safer.
+- Change one color at a time and look at the whole page, including the tabs, the Book form's selected option, and the footer.
+- To check a pair of colors, use **webaim.org/resources/contrastchecker**. Aim for a ratio of **4.5** or higher for normal text, or **3** for big bold text.
+
+### Going back to the old colors
+
+The earlier colors are still in the file as comments, on the line above each new one, between `/*` and `*/`. To use an old one, delete the new line and remove the `/*` and `*/` around the old one. The `--gold-text`, `--seafoam-text` and `--footer-text` lines are new and have no old version, so leave them in.
+
+---
+
+## 11. Getting help from an AI assistant
 
 If you ask an AI tool to help, tell it:
 
-> Read the README in this project first. For projects, only edit `data/projects.json`, keeping every value in straight quote marks and checking the commas. For other text on the page, only change words in `index.html`, not tags or class names. Don't change the CSS or JavaScript files.
+> Read the README in this project first. For projects, only edit `data/projects.json`, keeping every value in straight quote marks and checking the commas. For other text on the page, only change words in `index.html`, not tags or class names. Don't change the JavaScript files. Only change the CSS if I ask for new colors, and then only the color values in the `:root` block.
 
 Then paste any new `projects.json` into jsonlint.com before you commit.
